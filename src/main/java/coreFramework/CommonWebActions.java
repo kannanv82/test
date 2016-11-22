@@ -1,7 +1,6 @@
 package coreFramework;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +18,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,7 +42,6 @@ public class CommonWebActions extends ReportUtil {
 	static RemoteWebDriver remoteWD = null;
 	static boolean isElementDisplayed;
 	static JavascriptExecutor javaScriptDriver;
-	public static ChromeDriverService service;
 
 	/**
 	 * This method is used to launch the application.
@@ -63,7 +59,7 @@ public class CommonWebActions extends ReportUtil {
 			int waitTime = Integer.parseInt(implicitWait);
 
 			String ieDriverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\IEDriverServer_Win32_2.48.0\\IEDriverServer.exe";
-			String chromeDriverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver_2.20_win32\\chromedriver.exe";
+			String chromeDriverPath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver_win32\\chromedriver.exe";
 			
 			
 			if (browserType.equalsIgnoreCase("firefox")){
@@ -80,12 +76,7 @@ public class CommonWebActions extends ReportUtil {
 				javaScriptDriver = (JavascriptExecutor) wd;
 			} else if (browserType.equalsIgnoreCase("chrome")) {
 				System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-				 service = new ChromeDriverService.Builder().usingDriverExecutable(new File(chromeDriverPath)).usingPort(9515).build();
-				  service.start();
-				 System.out.println(service.getUrl());
-			    wd = new RemoteWebDriver(service.getUrl(),
-			        DesiredCapabilities.chrome());
-				//wd = new ChromeDriver();
+				wd = new ChromeDriver();
 				javaScriptDriver = (JavascriptExecutor) wd;
 			}
 
