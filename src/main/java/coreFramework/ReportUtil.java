@@ -78,35 +78,34 @@ public class ReportUtil extends CoreListener {
 	   */
 	public static void reporterEvent(String status, String description){
 		
-		switch (status) {
-		case "info":
+		if (status.equals("info")) 
+		
 			logger.log(LogStatus.INFO, description);			
-			break;
-		case "fail":
+		else if (status.equals("fail"))
+		
 			logger.log(LogStatus.FAIL, description);
-			break;
-		case "pass":
+		else if (status.equals("pass"))
+		
 			logger.log(LogStatus.PASS, description);
-			break;
-		case "error":
+		else if (status.equals("error"))
+		
 			logger.log(LogStatus.ERROR, description);
-			break;
-		case "fatal":
+		else if (status.equals("fatal"))
+		
 			logger.log(LogStatus.FATAL, description);
-			break;
-		case "warning":
+		else if (status.equals("warning"))
+		
 			logger.log(LogStatus.WARNING, description);
-			break;
-		case "skip":
+		else if (status.equals("skip"))
+		
 			logger.log(LogStatus.SKIP, description);
-			break;
-		case "unknown":
+		else if (status.equals("unknown"))
+		
 			logger.log(LogStatus.UNKNOWN, description);
-			break;
+			
 
-		default:
-			break;
-		}
+		
+		
 	}
 	
 	
